@@ -1,8 +1,7 @@
 pipedrive-api
 =============
 
-A minimalistic Python library for interacting with the pipedrive.com API
-
+A minimalistic Python library for interacting with the pipedrive.com API (https://developers.pipedrive.com/v1)
 This is written for very specific use, however it should cover all endpoints and methods.
 
 ### Usage:

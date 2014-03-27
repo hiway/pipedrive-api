@@ -27,7 +27,7 @@ person = pd.persons(method='post',
 person_id = person['data']['id']
 deal = api.deals(method='post', 
 				 data={'person_id':person_id, 
-				 'title':'Example'})
+				 	   'title':'Example'})
 ```
 
 #### Delete a Person

@@ -17,22 +17,20 @@ pd = Pipedrive(API_TOKEN)
 
 #### Get all Persons
 ```
-print pd.persons()
+print pd.persons.get()
 ```
 
 #### Create a Person and then attach it to a newly created Deal.
 ```
-person = pd.persons(method='post', 
-					data={'name':'John Doe', 
-						  'email':'john@example.com'})
+person = pd.persons.post(data={'name':'John Doe', 
+						       'email':'john@example.com'})
 
-person_id = person['data']['id']
-deal = api.deals(method='post', 
-				 data={'person_id':person_id, 
-				 	   'title':'Example'})
+person_id = person['id']
+deal = api.deals.post(data={'person_id':person_id, 
+				 	        'title':'Example'})
 ```
 
 #### Delete a Person
 ```
-pd.persons(method='delete', id=3426)
+pd.persons.delete(id=3426)
 ```

@@ -19,7 +19,7 @@ class JSONObject(object):
             return response
         raise KeyError(name)
 
-class PipeDriveError(Exception):
+class PipedriveError(Exception):
     def __init__(self, response):
         self.response = response
 
@@ -38,7 +38,7 @@ class HttpMethod(object):
             url = self._build_url(endpoint=self.endpoint, id=id, submethod=submethod)
             response = self._request(url=url, method=method, data=data)
             if 'error' in response.data:
-                raise PipeDriveError(response)
+                raise PipedriveError(response)
             return response
         return wrapper
 
@@ -67,10 +67,10 @@ class HttpMethod(object):
             return response        
 
 
-class PipeDrive(object):
+class Pipedrive(object):
     def __init__(self, api_token, version='v1'):
         self.api_token = api_token
-        self.api_path = "https://api.pipedrive.com/%s/" % version
+        self.api_path = "https://api.Pipedrive.com/%s/" % version
 
     def __getattr__(self, endpoint):
         api_token = self.api_token

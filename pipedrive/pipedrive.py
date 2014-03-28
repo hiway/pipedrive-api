@@ -1,6 +1,7 @@
 import requests
 import pprint
 
+
 class JSONObject(object):
     def __init__(self, data):
         self.data = data
@@ -18,6 +19,7 @@ class JSONObject(object):
                 return JSONObject(response)
             return response
         raise KeyError(name)
+
 
 class PipedriveError(Exception):
     def __init__(self, response):

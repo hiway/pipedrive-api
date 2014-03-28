@@ -17,6 +17,11 @@ pd = Pipedrive(API_TOKEN)
 
 #### Get all Persons
 ```
+persons = pd.persons.get()
+```
+
+#### Get a specific person
+```
 person = pd.persons.get(id=1)
 print person.name 
 print person.email

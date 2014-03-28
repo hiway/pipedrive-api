@@ -17,15 +17,18 @@ pd = Pipedrive(API_TOKEN)
 
 #### Get all Persons
 ```
-print pd.persons.get()
+person = pd.persons.get()
+print person.name 
+print person.email
 ```
+
+You can get raw JSON with `person.data`
 
 #### Create a Person and then attach it to a newly created Deal.
 ```
 person = pd.persons.post(data={'name':'John Doe', 
 						       'email':'john@example.com'})
-
-person_id = person['id']
+person_id = person.id
 deal = api.deals.post(data={'person_id':person_id, 
 				 	        'title':'Example'})
 ```

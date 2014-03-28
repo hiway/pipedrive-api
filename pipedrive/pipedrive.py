@@ -1,5 +1,23 @@
 import requests
+import pprint
 
+class JSONObject(object):
+    def __init__(self, data):
+        self.data = data
+
+    def __str__(self):
+        return pprint.pformat(self.data)
+
+    def __repr__(self):
+        return pprint.pformat(self.data)
+
+    def __getattr__(self, name):
+        response = self.data.get(name)
+        if response:
+            if isinstance(response, dict):
+                return JSONObject(response)
+            return response
+        raise KeyError(name)
 
 class PipeDriveError(Exception):
     def __init__(self, response):
@@ -19,7 +37,7 @@ class HttpMethod(object):
         def wrapper(data={}, id=None, submethod=None):
             url = self._build_url(endpoint=self.endpoint, id=id, submethod=submethod)
             response = self._request(url=url, method=method, data=data)
-            if 'error' in response:
+            if 'error' in response.data:
                 raise PipeDriveError(response)
             return response
         return wrapper
@@ -40,9 +58,9 @@ class HttpMethod(object):
                               params=params)
         try: 
             if 'data' in result.json():
-                response = result.json()['data']
+                response = JSONObject(result.json()['data'])
             else:
-                response = result.json()
+                response = JSONObject(result.json())
         except: 
             response = result.text
         finally:
